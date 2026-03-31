@@ -1,26 +1,72 @@
-# Overview
+# Phase 1 – Introduction to PySpark DataFrames
 
-Phase 1 focused on understanding the basics of PySpark and how to work with DataFrames. It introduced fundamental operations similar to SQL, helping build a strong foundation for data processing.
 
-# What we learn
-Basics of PySpark and DataFrames
-Viewing data using show()
-Selecting specific columns using select()
-Filtering data using filter() / where()
-Performing basic aggregations using groupBy()
-Understanding DataFrame as a table (rows and columns like SQL)
+## Objective
 
-# Tasks Performed
+This phase focuses on understanding the basics of PySpark DataFrames and performing fundamental operations like selecting, filtering, and simple aggregations.
 
-1. Viewing Data
-Used show() to display records from a DataFrame
 
-3. Selecting Columns
-Retrieved specific columns using select()
+## Problem Statement (Summary)
 
-5. Filtering Data
-Applied conditions to filter rows using filter()
+• Load and explore data using PySpark DataFrames
+• Display data using `show()`
+• Select specific columns from the dataset
+• Filter rows based on conditions
+• Perform basic aggregation using `groupBy()`
+• Understand DataFrame structure similar to SQL tables
 
-7. Aggregation
-Grouped data using groupBy() and calculated values like count
+Detailed problem statement is available in:
+phase1_problem_statement.pdf
 
+
+##  Dataset Used
+
+• Dataset: Sample dataset provided in Spark Playground
+• Source: Spark Playground tutorials
+• Tables used: Single DataFrame for basic operations
+
+##  Approach
+
+1. Loaded dataset into PySpark DataFrame
+2. Explored data using `show()` and schema understanding
+3. Selected required columns using `select()`
+4. Applied filtering conditions using `filter()` / `where()`
+5. Performed basic aggregation using `groupBy()`
+6. Compared operations with SQL for better understanding
+
+##  Key Transformations
+
+• `select()` for column selection
+• `filter()` / `where()` for row filtering
+• `groupBy()` for aggregation
+• `show()` for displaying results
+
+
+##  Output / Results
+
+• Filtered dataset based on conditions
+• Selected specific columns from dataset
+• Aggregated results using groupBy
+• Displayed processed data
+
+
+##  Challenges Faced
+
+• Understanding PySpark syntax initially
+• Mapping SQL concepts to PySpark operations
+• Getting familiar with DataFrame transformations
+
+
+## Learnings
+
+• Basics of PySpark DataFrames
+• How to perform selection and filtering operations
+• Importance of aggregation using groupBy
+• Understanding DataFrame as a table
+
+
+##  Files in this Folder
+
+• phase1_problem_statement.pdf → Problem description
+• solution.py / notebook → Implementation
+• outputs/ → Results 
