@@ -20,7 +20,6 @@ sales_clean = sales.dropna(subset=["customer_id", "total_amount", "sale_date"]) 
                    .filter(col("total_amount") > 0)
 
 #  Join customers and sales
-
 df = sales_clean.join(customers_clean, on="customer_id", how="inner")
 
 # Daily Sales
