@@ -1,0 +1,193 @@
+-- Total salary for each department
+%sql
+select department,sum(salary) from Employee group by department
+
+-- Count of employees in each department
+%sql
+select department,count(emp_id) from Employee group by department
+
+-- Average salary in each department
+%sql
+select department,avg(salary) from Employee group by department
+
+-- Departments having more than 1 employee
+%sql
+select department,count(emp_id) as c from employee group by department having c>1
+
+-- Maximum salary in each department
+%sql
+select department,max(salary) from Employee group by department
+
+-- Minimum salary in each department
+%sql
+select department,min(salary) from Employee group by department
+
+-- Departments where total salary is greater than 100000
+%sql
+select department,sum(salary) as total from Employee group by department having total>100000
+
+-- Departments having more than 2 employees
+%sql
+select department,count(emp_id) as c from Employee group by department having c>2
+
+-- Average salary per employee (grouped by emp_id and department) for employees joined after 2021-01-01
+%sql
+select emp_id,avg(salary),department from Employee where joining_date>'2021-01-01' group by department,emp_id
+
+-- Departments where total salary is greater than 75000
+%sql
+select department,sum(salary) as total from Employee group by department having total>75000
+
+-- Departments where total salary is less than 150000
+%sql
+select department,sum(salary) as total from Employee group by department having total<150000
+
+-- Departments having more than 1 employee (duplicate query)
+%sql
+select department,count(emp_id) as c from employee group by department having c>1
+
+-- Departments where total salary is greater than 125000
+%sql
+select department,sum(salary) as total from Employee group by department having total>125000
+
+-- Departments having more than 2 employees (duplicate query)
+%sql
+select department,count(emp_id) as c from employee group by department having c>2
+
+-- Departments where average salary is greater than 60000
+%sql
+select department,avg(salary) as total from Employee group by department having total>60000
+
+-- Departments where total salary is between 100000 and 200000
+%sql
+select department,sum(salary) as total from Employee group by department having total between 100000 and 200000
+
+-- Total sales amount for each employee
+%sql
+select emp_id, sum(amount) as total_sales 
+from Sales 
+group by emp_id
+
+
+-- Count of sales made by each employee using JOIN
+%sql
+select e.emp_id, count(s.sales_id) 
+from sales s 
+join employee e 
+on s.emp_id = e.emp_id 
+group by e.emp_id
+
+
+-- Employees who made more than 1 sale (grouped by name)
+%sql
+select e.emp_name, count(s.sales_id) as sales_count 
+from sales s 
+join employee e 
+on e.emp_id = s.emp_id 
+group by e.emp_name 
+having sales_count > 1
+
+-- Total salary and total sales amount for each employee (using emp_id)
+%sql
+select e.emp_id, sum(e.salary), sum(s.amount) 
+from employee e 
+join sales s 
+on e.emp_id = s.emp_id 
+group by e.emp_id
+
+
+-- Count of unique products sold by each employee
+%sql
+select emp_id, count(distinct product) 
+from sales 
+group by emp_id
+
+
+-- Highest sales amount made by each employee
+%sql
+select emp_id, max(amount) 
+from sales 
+group by emp_id
+
+
+-- Total salary and total sales amount for each employee (using name)
+%sql
+select e.emp_name, sum(e.salary), sum(s.amount) 
+from employee e 
+join sales s 
+on e.emp_id = s.emp_id 
+group by e.emp_name
+
+
+-- Count of unique products sold by each employee (with name)
+%sql
+select e.emp_name, count(distinct s.product) 
+from employee e 
+join sales s 
+on e.emp_id = s.emp_id 
+group by e.emp_name
+
+
+-- Highest sales amount per employee (with name)
+%sql
+select e.emp_name, max(s.amount) 
+from employees e 
+join sales s 
+on e.emp_id = s.emp_id 
+group by e.emp_name
+
+
+-- Total sales per product, only showing products with total > 50000
+%sql
+select product, sum(amount) as total 
+from sales 
+group by product 
+having total > 50000
+
+
+-- Maximum sales amount in each department
+%sql
+select e.department, max(s.amount) 
+from employee e 
+join sales s 
+on e.emp_id = s.emp_id 
+group by e.department
+
+
+-- Department with highest total sales amount
+%sql
+select e.department, sum(s.amount) as total_sales
+from Employee e
+join Sales s
+on e.emp_id = s.emp_id
+group by e.department
+order by total_sales desc
+limit 1
+
+
+-- Top 3 employees based on total sales amount
+%sql
+select e.emp_name, sum(s.amount) as total 
+from employee e 
+join sales s 
+on e.emp_id = s.emp_id 
+group by e.emp_name 
+order by total desc 
+limit 3
+
+
+-- Total employees and average salary grouped by joining year
+%sql
+select year(joining_date) as year_j, count(emp_id) as total, avg(salary)
+from employee  
+group by year_j
+
+
+-- Number of employees with no sales, grouped by department
+%sql
+select e.department, count(e.emp_id) as no_sales_employees
+from Employee e
+left join Sales s
+on e.emp_id = s.emp_id
+where s.emp_id is null
+group by e.department
